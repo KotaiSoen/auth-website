@@ -1,0 +1,173 @@
+.container {
+    padding: 15px 50px 0px;
+}
+
+.central-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.back-div {
+    display: flex;
+    align-items: center;
+    /* background-color: blue; */
+}
+
+.back-div mat-icon {
+    color: #2D9CDB;
+    font-size: 20px;
+    margin-top: 5px;
+    /* align-self: flex-end; */
+}
+
+.back-div p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 25px;
+    /* identical to box height */
+
+    letter-spacing: -0.035em;
+
+    color: #2D9CDB;
+}
+
+.main-box {
+    padding-top: 5px;
+    padding-left: 35px;
+    width: 600px;
+    height: 600px;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+}
+
+.main-box .change-info {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    /* identical to box height */
+
+    letter-spacing: -0.035em;
+
+    color: #000000;
+
+}
+
+.changes-will {
+    margin-top: -10px;
+}
+
+.font-size {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 12px;
+    /* identical to box height */
+
+    letter-spacing: -0.035em;
+}
+
+.color-82 {
+    color: #828282;
+
+}
+
+.change-photo {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.change-photo p {
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.image {
+    width: 45px;
+    height: 45px;
+    border-radius: 6px;
+    background-image: url('../../../assets/94AE35B1-59AC-4927-B8F1-735F458A68E8L0001.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image mat-icon {
+    color: white;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.label {
+    padding-top: 12px;
+    margin-bottom: 2px;
+}
+
+.input {
+    width: 300px;
+    height: 32px;
+    border: 1px solid #828282;
+    border-radius: 8px;
+    padding-left: 10px;
+    outline: none;
+}
+
+.bio textarea {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 60px;
+    max-height: 60px;
+    border: 1px solid #828282;
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-top: 10px;
+    outline: none;
+}
+
+input::placeholder {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 12px;
+    /* identical to box height */
+
+    letter-spacing: -0.035em;
+
+    color: #BDBDBD;
+
+}
+
+textarea::placeholder {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 12px;
+    /* identical to box height */
+
+    letter-spacing: -0.035em;
+
+    color: #BDBDBD;
+
+}
+
+button {
+    margin-top: 20px;
+    width: 65px;
+    height: 30px;
+    background: #2F80ED;
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 22px;
+    /* identical to box height */
+
+    letter-spacing: -0.035em;
+
+    color: #FFFFFF;
+
+}
