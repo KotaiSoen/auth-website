@@ -8,15 +8,17 @@
                 paths for you to choose
             </p>
             <div>
-                <div class="input-box">
-                    <mat-icon class="mat-email">email</mat-icon>
-                    <input #emailInput type="email" placeholder="Email">
-                </div>
-                <div class="input-box password">
-                    <mat-icon class="mat-password">lock</mat-icon>
-                    <input #pwInput type="password" placeholder="Password">
-                </div>
-                <button class="start-coding" (click)="onSignUpButtonClicked(emailInput.value, pwInput.value)">Start coding now</button>
+                <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+                    <div class="input-box">
+                        <mat-icon class="mat-email">email</mat-icon>
+                        <input type="email" placeholder="Email" formControlName="email">
+                    </div>
+                    <div class="input-box password">
+                        <mat-icon class="mat-password">lock</mat-icon>
+                        <input type="password" placeholder="Password" formControlName="password">
+                    </div>
+                    <button class="start-coding" type="submit">Start coding now</button>
+                </form>
             </div>
             <div class="social-profile">
                 <p class="or-continue">or continue with these social profile</p>

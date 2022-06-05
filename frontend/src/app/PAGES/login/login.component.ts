@@ -1,7 +1,7 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
-import { MidAuthService } from 'src/app/mid-auth.service';
 
 
 @Component({
@@ -11,13 +11,18 @@ import { MidAuthService } from 'src/app/mid-auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private midService: MidAuthService, private authService: AuthService, private http: HttpClient) { }
+  checkoutForm = this.formBuilder.group({
+    email: '',
+    password: ''
+  });
+
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  onLoginButtonClicked(email: string, password: string) {
-    this.midService.login(email, password).subscribe((res: HttpResponse<any>) => {
+  onSubmit() {
+    this.authService.login(this.checkoutForm.value).subscribe((res) => {
       console.log(res);
     })
   }

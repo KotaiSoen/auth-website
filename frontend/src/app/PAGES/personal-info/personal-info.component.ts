@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WebReqService } from 'src/app/web-req.service';
+import { WebService } from '../../web.service'
 
 @Component({
   selector: 'app-personal-info',
@@ -10,12 +10,11 @@ export class PersonalInfoComponent implements OnInit {
 
   user!: any[];
 
-  constructor(private webService: WebReqService) { }
+  constructor(private webService: WebService) { }
 
   ngOnInit(): void {
-    this.webService.getPersonalInfo().subscribe((res: any) => {
+    this.webService.getPersonalInfo().subscribe((res) => {
       console.log(res);
-      this.user = res;
     })
   }
 

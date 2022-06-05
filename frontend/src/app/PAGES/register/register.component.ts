@@ -1,6 +1,6 @@
-import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MidAuthService } from 'src/app/mid-auth.service';
+import { FormBuilder } from '@angular/forms';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -9,14 +9,19 @@ import { MidAuthService } from 'src/app/mid-auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private midService: MidAuthService) { }
+  checkoutForm = this.formBuilder.group({
+    email: '',
+    password: ''
+  });
+
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  onSignUpButtonClicked(email: string, password: string) {
-    this.midService.signUp(email, password).subscribe((res: HttpResponse<any>) => {
-      
+  onSubmit() {
+    this.authService.register(this.checkoutForm.value).subscribe((res) => {
+      console.log(res);
     })
   }
 

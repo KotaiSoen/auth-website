@@ -1,4 +1,5 @@
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 const User = require('../db/models/user.model');
 require('dotenv').config();
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
@@ -35,4 +36,21 @@ module.exports = (passport) => {
             }
         }
     ))
+
+    passport.serializeUser((user, done) => {
+        done(null, user.id)
+        console.log(`this is the serialized user: ${user}`)
+    })
+
+    passport.deserializeUser((id, done) => {
+        console.log(`this is the id:${id}`)
+        if (id.match(/^[0-9a-fA-F]{24}$/)) {
+            User.findOne({ id: id }).then(user => {
+                console.log('it is done')
+                done(null, user)
+            })
+        } else {
+            console.log("wrong id format")
+        }
+    })
 }

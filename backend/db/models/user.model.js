@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -20,16 +21,6 @@ const UserSchema = new mongoose.Schema({
     phone: {
         type: Number
     },
-    sessions: [{
-        token: {
-            type: String,
-            required: true
-        },
-        expiresAt: {
-            type: Number,
-            required: true
-        }
-    }],
     google: {
         id: {
             type: String,
@@ -43,8 +34,7 @@ const UserSchema = new mongoose.Schema({
     },
 })
 
-//requiring methods
-require('./user.methods')(UserSchema);
+UserSchema.plugin(passportLocalMongoose, { usernameField: 'email'});
 
 const User = mongoose.model('User', UserSchema);
 

@@ -1,27 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { WebService } from './web.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  URL = 'http://localhost:3000';
+  constructor(private http: HttpClient, private webService: WebService) { }
 
-  constructor(private http: HttpClient, private router: Router) { }
-
-  login(email: string, password: string) {
-    return this.http.post(`${this.URL}/users/login`, {
-      email,
-      password
-    }, { observe: 'response' })
+  register(payload: Object) {
+    return this.http.post(`${this.webService.URL}/register`, payload);
   }
 
-  signUp(email: string, password: string) {
-    return this.http.post(`${this.URL}/users/sign-up`, {
-      email,
-      password
-    }, { observe: 'response' })
+  login(payload: Object) {
+    return this.http.post(`${this.webService.URL}/login`, payload);
   }
 }

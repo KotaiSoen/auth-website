@@ -10,9 +10,10 @@ import { PersonalInfoComponent } from './PAGES/personal-info/personal-info.compo
 import { EditPersonalInfoComponent } from './PAGES/edit-personal-info/edit-personal-info.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CreatedByComponent } from './PAGES/created-by/created-by.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { WebRequestInterceptor } from './web-req.interceptor';
-import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 'angularx-social-login';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -28,11 +29,11 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: WebRequestInterceptor, multi: true }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
