@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { WebService } from './web.service';
 
@@ -7,13 +7,19 @@ import { WebService } from './web.service';
 })
 export class AuthService {
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+    }),
+  };
+
   constructor(private http: HttpClient, private webService: WebService) { }
 
   register(payload: Object) {
-    return this.http.post(`${this.webService.URL}/register`, payload);
+    return this.http.post(`${this.webService.URL}/register`, payload, this.httpOptions);
   }
 
   login(payload: Object) {
-    return this.http.post(`${this.webService.URL}/login`, payload);
+    return this.http.post(`${this.webService.URL}/login`, payload, this.httpOptions);
   }
 }

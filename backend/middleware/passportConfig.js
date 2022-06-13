@@ -23,11 +23,10 @@ module.exports = (passport) => {
                 console.log('Creating new user...');
                 const newUser = new User({
                     method: 'google',
-                    google: {
-                        id: profile.id,
-                        name: profile.displayName,
-                        email: profile.emails[0].value
-                    }
+                    name: profile.displayName,
+                    googleid: profile.id,
+                    email: profile.emails[0].value,
+                    photourl: profile.photos[0].value
                 });
                 await newUser.save();
                 return done(null, newUser);
@@ -38,19 +37,14 @@ module.exports = (passport) => {
     ))
 
     passport.serializeUser((user, done) => {
-        done(null, user.id)
+        done(null, user)
         console.log(`this is the serialized user: ${user}`)
     })
 
     passport.deserializeUser((id, done) => {
-        console.log(`this is the id:${id}`)
-        if (id.match(/^[0-9a-fA-F]{24}$/)) {
-            User.findOne({ id: id }).then(user => {
-                console.log('it is done')
-                done(null, user)
-            })
-        } else {
-            console.log("wrong id format")
-        }
+        console.log('the user is being deserialized');
+        User.findById(id, function(err, user) {
+            done(err, user)
+    })
     })
 }

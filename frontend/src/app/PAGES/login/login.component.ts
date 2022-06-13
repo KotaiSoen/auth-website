@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 
 
@@ -16,14 +17,22 @@ export class LoginComponent implements OnInit {
     password: ''
   });
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  googleLogin() {
+    window.location.href = "http://localhost:3000/users/auth/google"
+  }
+
   onSubmit() {
+    console.log('clicked');
     this.authService.login(this.checkoutForm.value).subscribe((res) => {
       console.log(res);
+      // if(res) {
+      //   this.router.navigate(['/personal-info', { res: JSON.stringify(res) }])
+      // }
     })
   }
 

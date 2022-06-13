@@ -11,7 +11,7 @@
                     </div>
                     <div class="input-box password">
                         <mat-icon class="mat-password">lock</mat-icon>
-                        <input placeholder="Password" formControlName="password">
+                        <input placeholder="Password" type='password' formControlName="password">
                     </div>
                     <button class="login" type="submit">Login</button>
                 </form>
@@ -19,7 +19,7 @@
             <div class="social-profile">
                 <p class="or-continue">or continue with these social profile</p>
                 <div class="social-images">
-                    <a href="http://localhost:3000/users/auth/google"><img src="../../../assets/Google.svg"></a> 
+                    <img (click)='googleLogin()' src="../../../assets/Google.svg">
                     <img src="../../../assets/Facebook.svg">
                     <img src="../../../assets/Twitter.svg">
                     <img src="../../../assets/Gihub.svg">
