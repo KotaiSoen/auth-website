@@ -7,7 +7,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class WebService {
 
-  URL = 'http://localhost:3000/users'
+  URL = 'https://serene-sierra-33552.herokuapp.com/users'
 
   
 
