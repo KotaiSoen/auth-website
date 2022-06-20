@@ -21,19 +21,19 @@ export class RegisterComponent implements OnInit {
   }
 
   googleLogin() {
-    window.location.href = "http://localhost:3000/users/auth/google"
+    window.location.href = "https://serene-sierra-33552.herokuapp.com/users/auth/google"
   }
 
   facebookLogin() {
-    window.location.href = "http://localhost:3000/users/auth/facebook"
+    window.location.href = "https://serene-sierra-33552.herokuapp.com/users/auth/facebook"
   }
 
   githubLogin() {
-    window.location.href = "http://localhost:3000/users/auth/github"
+    window.location.href = "https://serene-sierra-33552.herokuapp.com/users/auth/github"
   }
 
   twitterLogin() {
-    window.location.href = "http://localhost:3000/users/auth/twitter"
+    window.location.href = "https://serene-sierra-33552.herokuapp.com/users/auth/twitter"
   }
 
   onSubmit() {

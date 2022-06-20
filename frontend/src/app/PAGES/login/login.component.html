@@ -13,16 +13,16 @@
                         <mat-icon class="mat-password">lock</mat-icon>
                         <input placeholder="Password" type='password' formControlName="password">
                     </div>
-                    <button class="login" type="submit">Login</button>
+                    <button class="login pointer" type="submit">Login</button>
                 </form>
             </div>
             <div class="social-profile">
                 <p class="or-continue">or continue with these social profile</p>
                 <div class="social-images">
-                    <img (click)='googleLogin()' src="../../../assets/Google.svg">
-                    <img (click)='facebookLogin()' src="../../../assets/Facebook.svg">
-                    <img (click)='twitterLogin()' src="../../../assets/Twitter.svg">
-                    <img (click)='githubLogin()' src="../../../assets/Gihub.svg">
+                    <img class="pointer" (click)='googleLogin()' src="../../../assets/Google.svg">
+                    <img class="pointer" (click)='facebookLogin()' src="../../../assets/Facebook.svg">
+                    <img class="pointer" (click)='twitterLogin()' src="../../../assets/Twitter.svg">
+                    <img class="pointer" (click)='githubLogin()' src="../../../assets/Gihub.svg">
                 </div>
             </div>
             <p class="no-account">Don't have an account yet? <span routerLink="/register">Register</span></p>

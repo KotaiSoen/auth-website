@@ -4,7 +4,6 @@ const cors = require('cors');
 const userRoute = require('./routes/userRoute');
 const session = require('express-session');
 const passport = require('passport');
-const cookieSession = require('cookie-session');
 const MongoStore = require('connect-mongo');
 const User = require('./db/models/user.model')
 
@@ -16,7 +15,7 @@ require('./db/mongoose');
 
 //json parser middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 
 
 

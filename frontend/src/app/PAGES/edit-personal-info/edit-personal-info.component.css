@@ -105,11 +105,31 @@
     align-items: center;
 }
 
+.no-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 6px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .image mat-icon {
     color: white;
     font-size: 16px;
     padding-left: 10px;
     padding-top: 10px;
+}
+
+.no-image mat-icon {
+    color: black;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-top: 8px;
 }
 
 .label {
@@ -162,7 +182,7 @@ textarea::placeholder {
 
 }
 
-button {
+.save {
     margin-top: 20px;
     width: 65px;
     height: 30px;
@@ -180,6 +200,52 @@ button {
 
 }
 
+.change-password-div {
+    /* margin-top: -14px; */
+    display: flex;
+    align-items: center;
+}
+
+.change-password {
+    margin-left: 20px;
+    width: 100px;
+    height: 25px;
+    background: #2F80ED;
+    border-radius: 4px;
+    border: none;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 12px;
+    /* identical to box height */
+
+    letter-spacing: -0.035em;
+
+    color: #FFFFFF;
+}
+
 .pointer {
     cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .container {
+        padding: 15px 10px;
+    }
+    .central-div {
+        align-items: unset;
+    }
+    .main-box {
+        border: none;
+        padding: 0;
+    }
+    .input {
+        width: 200px;
+    }
+    .bio textarea {
+        min-width: 200px;
+        max-width: 200px;
+    }
+    .label {
+        padding-top: 5px;
+    }
 }

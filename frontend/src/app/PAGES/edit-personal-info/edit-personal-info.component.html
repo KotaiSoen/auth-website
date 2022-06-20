@@ -5,7 +5,7 @@
     </div>
     <div class="central-div">
         <div class="main-div">
-            <div class="back-div">
+            <div class="back-div pointer" routerLink="/personal-info">
                 <mat-icon>keyboard_arrow_left</mat-icon>
                 <p>Back</p>
             </div>
@@ -13,9 +13,14 @@
                 <p class="change-info">Change Info</p>
                 <p class="font-size color-82 changes-will">Changes will be reflected to every services</p>
                 <div class="change-photo">
-                    <div class="image" [style.background-image]="'url(' + user.photoUrl + ')'">
+                    <div class="image" [style.background-image]="'url(' + user.photoUrl + ')'" *ngIf="user.photoUrl">
                         <label for="image_uploads" class="pointer">
                             <mat-icon>camera_alt</mat-icon>
+                        </label>
+                    </div>
+                    <div class="no-image" *ngIf="!user.photoUrl">
+                        <label for="image_uploads" class="pointer">
+                            <mat-icon class="noPhoto">camera_alt</mat-icon>
                         </label>
                     </div>
                     <p class="font-size color-82">
@@ -37,13 +42,16 @@
                 </div>
                 <div class="email">
                     <p class="font-size label">Email</p>
-                    <input class="input font-size" type="text" [(ngModel)]="user.email" #emailValue>
+                    <input class="input font-size" type="email" [(ngModel)]="user.email" #emailValue>
                 </div>
                 <div class="password">
                     <p class="font-size label">Password</p>
-                    <input class="input font-size" type="text" placeholder="Enter your new password...">
+                    <div class="change-password-div">
+                        <input class="input font-size" type="password" placeholder="Enter your new password..." #pwValue>
+                        <button class="change-password pointer" (click)="changePassword(pwValue.value)">Change password</button>
+                    </div>
                 </div>
-                <button (click)="update(nameValue.value, bioValue.value, phnValue.value, emailValue.value)">Save</button>
+                <button (click)="update(nameValue.value, bioValue.value, phnValue.value, emailValue.value)" class="save pointer">Save</button>
             </div>
             <app-created-by></app-created-by>
         </div>

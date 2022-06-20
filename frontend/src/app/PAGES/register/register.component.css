@@ -130,3 +130,17 @@ span {
     color: #2F80ED;
     cursor: pointer;
 }
+
+@media (max-width: 767px) {
+    .container {
+        align-items: unset;
+    }
+    .main-box {
+        border: none;
+        padding: 15px 10px;
+    }
+    /* app-created-by {
+        position: absolute;
+        bottom: 0;
+    } */
+}

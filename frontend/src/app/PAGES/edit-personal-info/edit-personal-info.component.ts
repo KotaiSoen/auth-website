@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 import { WebService } from 'src/app/web.service';
 
 @Component({
@@ -11,8 +12,10 @@ export class EditPersonalInfoComponent implements OnInit {
 
   users: any[] = [];
 
+  passwordChange: string = '';
 
-  constructor(private webService: WebService, private router: Router) { }
+
+  constructor(private webService: WebService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getPersonalInfo();
@@ -50,6 +53,14 @@ export class EditPersonalInfoComponent implements OnInit {
       }
     })
 
+  }
+
+  changePassword(password: string) {
+    const pw = {password}
+    this.authService.changePassword(pw).subscribe((res: any) => {
+      console.log(res);
+      // this.passwordChange = res;
+    })
   }
 
 }

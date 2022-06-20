@@ -151,3 +151,50 @@
 .details.password {
     padding-left: 155px;
 }
+
+@media (max-width: 767px) {
+    .container {
+        padding: 15px 10px;
+    }
+    .main-box {
+        border: none;
+        width: 350px;
+    }
+    .profile-edit {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .profile-text {
+        width: 50%;
+    }
+    .info-details {
+        padding-left: 15px;
+        padding-right: 15px;
+        justify-content: space-between;
+    }
+    .details-tag {
+        width: 50%;
+    }
+    .details {
+        text-align: right;
+    }
+    .details.photo {
+        padding: 0;
+    }
+    .details.name {
+        padding: 0;
+    }
+    .details.bio {
+        padding: 0;
+    }
+    .details.phone {
+        padding: 0;
+    }
+    .details.email {
+        padding: 0;
+    }
+    .details.password {
+        padding: 0;
+    }
+    
+}

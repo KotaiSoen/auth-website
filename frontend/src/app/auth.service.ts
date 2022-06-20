@@ -14,6 +14,13 @@ export class AuthService {
     withCredentials: true
   };
 
+  httpOptionsTwo = {
+    headers: new HttpHeaders({
+      'Content-Type' : 'text/plain'
+    }),
+    withCredentials: true
+  };
+
   constructor(private http: HttpClient, private webService: WebService) { }
 
   register(payload: Object) {
@@ -26,5 +33,9 @@ export class AuthService {
 
   logout() {
     return this.http.get(`${this.webService.URL}/logout`, this.httpOptions)
+  }
+
+  changePassword(payload: Object) {
+    return this.http.post(`${this.webService.URL}/change-password`, payload, {withCredentials: true});
   }
 }

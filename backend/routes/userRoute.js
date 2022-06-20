@@ -39,10 +39,12 @@ router.post("/register", (req, res) => {
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
     console.log('authenticated');
-    const user = req.user;
-    console.log(req.user);
-    res.json(user);
+    const userEmail = req.user.email;
+    console.log(userEmail)
+    res.json(userEmail);
 })
+
+router.post('/change-password', isLoggedIn, userController.change_password);
 
 //GOOGLE AUTH ROUTES
 
@@ -119,7 +121,7 @@ const parser = multer({ storage: storage });
 
 router.put("/uploadPicture", isLoggedIn, parser.single('file'), (req, res) => {
     const image_url = req.file.path;
-    console.log(image_url)
+    console.log(`this is the image url ${image_url}`)
     User.findOneAndUpdate({ _id: req.user._id }, {
         photoUrl: image_url
     }).then(() => {
