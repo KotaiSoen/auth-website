@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "https://serene-sierra-33552.herokuapp.com/users",
+      "secure": false
+    }
+}
