@@ -26,6 +26,18 @@ export class LoginComponent implements OnInit {
     window.location.href = "http://localhost:3000/users/auth/google"
   }
 
+  facebookLogin() {
+    window.location.href = "http://localhost:3000/users/auth/facebook"
+  }
+
+  githubLogin() {
+    window.location.href = "http://localhost:3000/users/auth/github"
+  }
+
+  twitterLogin() {
+    window.location.href = "http://localhost:3000/users/auth/twitter"
+  }
+
   onSubmit() {
     console.log('clicked');
     this.authService.login(this.checkoutForm.value).subscribe((res) => {
@@ -33,6 +45,9 @@ export class LoginComponent implements OnInit {
       // if(res) {
       //   this.router.navigate(['/personal-info', { res: JSON.stringify(res) }])
       // }
+      if(res) {
+        this.router.navigate(['/personal-info']);
+      }
     })
   }
 

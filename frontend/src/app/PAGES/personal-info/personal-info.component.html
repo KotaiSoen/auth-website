@@ -1,46 +1,47 @@
 <div class="container">
     <div class="logo">
         <img src="../../../assets/devchallenges.svg">
+        <app-logout></app-logout>
     </div>
     <div class="info">
         <p class="personal-info">Personal info</p>
         <p class="basic-info">Basic info, like your name and photo</p>
-        <div class="main-box" *ngFor="let user of user">
+        <div class="main-box" *ngFor="let user of users">
             <div class="profile-edit">
                 <div class="profile-text">
                     <p class="profile">Profile</p>
                     <p class="visible-info">Some info may be visible to other people</p>
                 </div>
-                <button class="edit-button">Edit</button>
+                <button class="edit-button" routerLink="/edit-personal">Edit</button>
             </div>
             <div class="info-details">
                 <p class="details-tag">PHOTO</p>
                 <div class="details photo">
-                    <img src="../../../assets/94AE35B1-59AC-4927-B8F1-735F458A68E8L0001.jpeg">
+                    <img src="{{user.photoUrl}}">
                 </div>
             </div>
             <div class="info-details">
                 <p class="details-tag">NAME</p>
                 <div class="details name">
-                    <p>Xanthe Neal</p>
+                    <p>{{user.name}}</p>
                 </div>
             </div>
             <div class="info-details">
                 <p class="details-tag">BIO</p>
                 <div class="details bio">
-                    <p>I am a software engineer and big fan of tits</p>
+                    <p>{{user.bio}}</p>
                 </div>
             </div>
             <div class="info-details">
                 <p class="details-tag">PHONE</p>
                 <div class="details phone">
-                    <p>34958723457899</p>
+                    <p>{{user.phoneNumber}}</p>
                 </div>
             </div>
             <div class="info-details">
                 <p class="details-tag">EMAIL</p>
                 <div class="details email">
-                    <p>{{user.email}}</p>
+                    <p>{{ user.email }}</p>
                 </div>
             </div>
             <div class="info-details">

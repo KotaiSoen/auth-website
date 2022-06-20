@@ -6,16 +6,19 @@ const UserSchema = new mongoose.Schema({
         type: String,
         //  required: true
     },
-    googleid: {
+    googleId: {
         type: String,
     },
-    photourl: {
+    photoUrl: {
         type: String,
     },
-    githubid: {
+    githubId: {
         type: String,
     },
-    twitterid: {
+    twitterId: {
+        type: String,
+    },
+    facebookId: {
         type: String,
     },
     bio: {
@@ -24,8 +27,8 @@ const UserSchema = new mongoose.Schema({
     email: {
         type: String,
     },
-    phonenumber: {
-        type: Number
+    phoneNumber: {
+        type: String,
     },
 })
 

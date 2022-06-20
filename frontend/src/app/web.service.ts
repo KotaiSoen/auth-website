@@ -16,4 +16,12 @@ export class WebService {
   getPersonalInfo() {
     return this.http.get(`${this.URL}/personal-info`, {withCredentials: true});
   }
+
+  editPersonal(payload: Object) {
+    return this.http.put(`${this.URL}/edit-personal`, payload, {withCredentials: true});
+  }
+
+  uploadPicture(payload: Object) {
+    return this.http.put(`${this.URL}/uploadPicture`, payload, {withCredentials: true})
+  }
 }

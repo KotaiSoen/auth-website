@@ -9,8 +9,9 @@ export class AuthService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json',
+      'Content-Type' : 'application/json'
     }),
+    withCredentials: true
   };
 
   constructor(private http: HttpClient, private webService: WebService) { }
@@ -21,5 +22,9 @@ export class AuthService {
 
   login(payload: Object) {
     return this.http.post(`${this.webService.URL}/login`, payload, this.httpOptions);
+  }
+
+  logout() {
+    return this.http.get(`${this.webService.URL}/logout`, this.httpOptions)
   }
 }

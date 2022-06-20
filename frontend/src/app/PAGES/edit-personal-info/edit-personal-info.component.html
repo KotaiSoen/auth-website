@@ -1,6 +1,7 @@
 <div class="container">
     <div class="first-div">
         <img src="../../../assets/devchallenges.svg">
+        <app-logout></app-logout>
     </div>
     <div class="central-div">
         <div class="main-div">
@@ -8,36 +9,41 @@
                 <mat-icon>keyboard_arrow_left</mat-icon>
                 <p>Back</p>
             </div>
-            <div class="main-box">
+            <div class="main-box" *ngFor="let user of users">
                 <p class="change-info">Change Info</p>
                 <p class="font-size color-82 changes-will">Changes will be reflected to every services</p>
                 <div class="change-photo">
-                    <div class="image">
-                        <mat-icon>camera_alt</mat-icon>
+                    <div class="image" [style.background-image]="'url(' + user.photoUrl + ')'">
+                        <label for="image_uploads" class="pointer">
+                            <mat-icon>camera_alt</mat-icon>
+                        </label>
                     </div>
-                    <p class="font-size color-82">CHANGE PHOTO</p>
+                    <p class="font-size color-82">
+                        <label for="image_uploads" class="pointer">CHANGE PHOTO</label>    
+                    </p>
+                    <input type="file" class="file" name="image" id="image_uploads" (change)="uploadPicture($event)">
                 </div>
                 <div class="name">
                     <p class="font-size label">Name</p>
-                    <input class="input font-size" type="text" placeholder="Enter your name...">
+                    <input class="input font-size" type="text" [(ngModel)]="user.name" #nameValue>
                 </div>
                 <div class="bio">
                     <p class="font-size label">Bio</p>
-                    <textarea name="" class="font-size" placeholder="Enter your bio..."></textarea>
+                    <textarea name="" class="font-size" [(ngModel)]="user.bio" #bioValue></textarea>
                 </div>
                 <div class="phone">
                     <p class="font-size label">Phone</p>
-                    <input class="input font-size" type="text" placeholder="Enter your phone...">
+                    <input class="input font-size" type="text" [(ngModel)]="user.phoneNumber" #phnValue>
                 </div>
                 <div class="email">
                     <p class="font-size label">Email</p>
-                    <input class="input font-size" type="text" placeholder="Enter your email...">
+                    <input class="input font-size" type="text" [(ngModel)]="user.email" #emailValue>
                 </div>
                 <div class="password">
                     <p class="font-size label">Password</p>
                     <input class="input font-size" type="text" placeholder="Enter your new password...">
                 </div>
-                <button>Save</button>
+                <button (click)="update(nameValue.value, bioValue.value, phnValue.value, emailValue.value)">Save</button>
             </div>
             <app-created-by></app-created-by>
         </div>

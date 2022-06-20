@@ -2,6 +2,11 @@
     padding: 15px 50px 0px;
 }
 
+.first-div {
+    display: flex;
+    justify-content: space-between;
+}
+
 .central-div {
     width: 100%;
     display: flex;
@@ -80,14 +85,17 @@
 
 .change-photo p {
     padding-left: 20px;
-    cursor: pointer;
+    /* cursor: pointer; */
+}
+
+.file {
+    display: none;
 }
 
 .image {
     width: 45px;
     height: 45px;
     border-radius: 6px;
-    background-image: url('../../../assets/94AE35B1-59AC-4927-B8F1-735F458A68E8L0001.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -170,4 +178,8 @@ button {
 
     color: #FFFFFF;
 
+}
+
+.pointer {
+    cursor: pointer;
 }

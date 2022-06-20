@@ -13,6 +13,7 @@ import { CreatedByComponent } from './PAGES/created-by/created-by.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LogoutComponent } from './PAGES/logout/logout.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     PersonalInfoComponent,
     EditPersonalInfoComponent,
-    CreatedByComponent
+    CreatedByComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -3,63 +3,48 @@ const router = express.Router();
 const User = require('../db/models/user.model')
 const userController = require('../controllers/userController');
 const passport = require('passport');
+const cloudinary = require('cloudinary').v2;
+const {CloudinaryStorage} = require('multer-storage-cloudinary');
+const multer = require('multer');
 const session = require('express-session');
+const cors = require('cors');
 require('../middleware/passportConfig')(passport);
 
 const LOCAL_ORIGIN = 'http://localhost:4200';
 
+//AUTHENTICATE MIDDLEWARE
+
 function isLoggedIn(req, res, next) {
-    console.log(req.user);
+    console.log(`This is the req.user ${req.user}`);
     req.user ? next() : res.sendStatus(401);
 }
 
 
-//AUTH ROUTES
+//LOCAL AUTH ROUTES
 router.post("/register", (req, res) => {
+
     User.register(new User({ email: req.body.email }), req.body.password, (err, user) => {
         if (err) {
             console.log(err);
-            res.redirect("http://localhost:4200/register")
+            res.send(err);
         }
         passport.authenticate("local")(req, res, () => {
             console.log(user)
-            res.redirect("http://localhost:4200/personal-info");
+            res.send({ 'message': 'You have been locally signed in'})
         })
     })
 
 })
 
-router.post("/login", passport.authenticate("local", {
-    successRedirect: "http://localhost:4200/personal-info",
-    failureRedirect: "http://localhost:4200/register"
-}), (req, res) => {
+
+router.post("/login", passport.authenticate("local"), (req, res) => {
+    console.log('authenticated');
     const user = req.user;
-    console.log(user);
-    res.status(200).json(user);
+    console.log(req.user);
+    res.json(user);
 })
 
-// router.options("*", (req, res) => {
-//     res.header("Access-Control-Allow-Origin", LOCAL_ORIGIN);
-//     res.setHeader("Access-Control-Allow-Credentials", "true");
-//     res.end();
-// });
-
-// router.post("/login", passport.authenticate("local", {
-//     successRedirect: "http://localhost:4200/personal-info",
-//     failureRedirect: "http://localhost:4200/register"
-// }), (req, res) => {
-//     res.header("Access-Control-Allow-Origin", LOCAL_ORIGIN);
-//     res.setHeader("Access-Control-Allow-Credentials", "true");
-//     console.log("users: ", req.user);
-//     const user = req.user;
-//     res.json(user);
-// });
-
-router.get("/logout", (req, res) => {
-    //handle with passport
-    req.logout();
-    res.redirect("http://localhost:4200/login");
-});
+//GOOGLE AUTH ROUTES
 
 router.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile'] }));
 
@@ -71,8 +56,77 @@ router.get(
     }
 );
 
+//FACEBOOK ROUTE
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
+
+router.get(
+    '/auth/facebook/callback',
+    passport.authenticate('facebook', { failureRedirect: 'http://localhost:4200/login'}),
+    (req, res) => {
+        res.redirect('http://localhost:4200/personal-info');
+    }
+);
+
+//GITHUB ROUTES
+router.get('/auth/github', passport.authenticate('github'));
+
+router.get(
+    '/auth/github/callback',
+    passport.authenticate('github'),
+    (req, res) => {
+        res.redirect('http://localhost:4200/personal-info');
+    }
+);
+
+//TWITTER ROUTES
+router.get('/auth/twitter', passport.authenticate('twitter', { scope: ['email', 'profile'] }));
+
+router.get(
+    '/auth/twitter/callback',
+    passport.authenticate('twitter'),
+    (req, res) => {
+        res.redirect('http://localhost:4200/personal-info');
+    }
+);
+
+//LOGOUT ROUTE
+router.get("/logout", isLoggedIn,  (req, res) => {
+    //handle with passport
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        res.send({ 'message': 'successfully deleted'})
+      });
+});
+
 //Main routes
-router.get('/personal-info', isLoggedIn, userController.get_personal_info)
+router.get('/personal-info', isLoggedIn, userController.get_personal_info);
+router.put('/edit-personal', isLoggedIn, userController.update_personal_info);
+
+//IMAGE STORAGE ROUTES
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
+});
+
+var storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: "demo",
+    allowedFormats: ['jpg', 'png'],
+});
+
+const parser = multer({ storage: storage });
+
+router.put("/uploadPicture", isLoggedIn, parser.single('file'), (req, res) => {
+    const image_url = req.file.path;
+    console.log(image_url)
+    User.findOneAndUpdate({ _id: req.user._id }, {
+        photoUrl: image_url
+    }).then(() => {
+        res.send({ 'message': 'photoUrl send successfully'})
+    })
+})
+
 
 
 module.exports = router;

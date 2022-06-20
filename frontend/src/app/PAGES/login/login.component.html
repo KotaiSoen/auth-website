@@ -20,9 +20,9 @@
                 <p class="or-continue">or continue with these social profile</p>
                 <div class="social-images">
                     <img (click)='googleLogin()' src="../../../assets/Google.svg">
-                    <img src="../../../assets/Facebook.svg">
-                    <img src="../../../assets/Twitter.svg">
-                    <img src="../../../assets/Gihub.svg">
+                    <img (click)='facebookLogin()' src="../../../assets/Facebook.svg">
+                    <img (click)='twitterLogin()' src="../../../assets/Twitter.svg">
+                    <img (click)='githubLogin()' src="../../../assets/Gihub.svg">
                 </div>
             </div>
             <p class="no-account">Don't have an account yet? <span routerLink="/register">Register</span></p>

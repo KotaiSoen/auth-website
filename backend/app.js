@@ -34,14 +34,10 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Credentials', true);
     res.header("Access-Control-Allow-Origin", "http://localhost:4200");
     res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, content-type, Accept, x-access-token, x-refresh-token, _id");
-    res.header('Content-Type', 'application/json');
+    res.header("Access-Control-Allow-Headers", "Content-Type");
     next();
 });
 
-// app.options('/*', (_, res) => {
-//     res.status(200);
-// });
 
 //express session middleware
 app.use(session({
