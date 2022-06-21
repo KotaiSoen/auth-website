@@ -11,7 +11,7 @@ module.exports = (passport) => {
     passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:3000/users/auth/google/callback",
+        callbackURL: `${process.env.BACKEND_PORT}/auth/google/callback`,
         passReqToCallback: true
     },
         async (request, accessToken, refreshToken, profile, done) => {
@@ -45,7 +45,7 @@ module.exports = (passport) => {
     passport.use(new FacebookStrategy({
         clientID: process.env.FB_CLIENT_ID,
         clientSecret: process.env.FB_CLIENT_SECRET,
-        callbackURL: "http://localhost:3000/users/auth/facebook/callback",
+        callbackURL: `${process.env.BACKEND_PORT}/auth/facebook/callback`,
         passReqToCallback: true,
         profileFields: ['id', 'emails', 'name', 'photos'],
     },
@@ -80,7 +80,7 @@ module.exports = (passport) => {
     passport.use(new GithubStrategy({
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: "http://localhost:3000/users/auth/github/callback",
+        callbackURL: `${process.env.BACKEND_PORT}/auth/github/callback`,
         passReqToCallback: true,
         scope: 'user:email',
     },
@@ -115,7 +115,7 @@ module.exports = (passport) => {
     passport.use(new TwitterStrategy({
         consumerKey: process.env.TWITTER_API_KEY,
         consumerSecret: process.env.TWITTER_API_KEY_SECRET,
-        callbackURL: "http://localhost:3000/users/auth/twitter/callback",
+        callbackURL: `${process.env.BACKEND_PORT}/auth/twitter/callback`,
         includeEmail: true,
     },
         async(token, tokenSecret, profile, done) => {

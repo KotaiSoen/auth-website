@@ -9,6 +9,7 @@ const multer = require('multer');
 const session = require('express-session');
 const cors = require('cors');
 require('../middleware/passportConfig')(passport);
+require('dotenv').config();
 
 const LOCAL_ORIGIN = 'http://localhost:4200';
 
@@ -54,7 +55,7 @@ router.get(
     '/auth/google/callback',
     passport.authenticate('google'),
     (req, res) => {
-        res.redirect('http://localhost:4200/personal-info');
+        res.redirect(`${process.env.FRONTEND_PORT}/personal-info`);
     }
 );
 
@@ -63,9 +64,9 @@ router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'
 
 router.get(
     '/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: 'http://localhost:4200/login'}),
+    passport.authenticate('facebook', { failureRedirect: `${process.env.FRONTEND_PORT}/login`}),
     (req, res) => {
-        res.redirect('http://localhost:4200/personal-info');
+        res.redirect(`${process.env.FRONTEND_PORT}/personal-info`);
     }
 );
 
@@ -76,7 +77,7 @@ router.get(
     '/auth/github/callback',
     passport.authenticate('github'),
     (req, res) => {
-        res.redirect('http://localhost:4200/personal-info');
+        res.redirect(`${process.env.FRONTEND_PORT}/personal-info`);
     }
 );
 
@@ -87,7 +88,7 @@ router.get(
     '/auth/twitter/callback',
     passport.authenticate('twitter'),
     (req, res) => {
-        res.redirect('http://localhost:4200/personal-info');
+        res.redirect(`${process.env.FRONTEND_PORT}/personal-info`);
     }
 );
 

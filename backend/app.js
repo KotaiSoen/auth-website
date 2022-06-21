@@ -31,7 +31,7 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Credentials', true);
-    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header("Access-Control-Allow-Origin", process.env.FRONTEND_PORT);
     res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE");
     res.header("Access-Control-Allow-Headers", "Content-Type");
     next();
