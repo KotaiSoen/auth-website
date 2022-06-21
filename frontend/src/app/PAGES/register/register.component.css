@@ -132,9 +132,9 @@ span {
 }
 
 @media (max-width: 767px) {
-    .container {
+    /* .container {
         align-items: unset;
-    }
+    } */
     .main-box {
         border: none;
         padding: 15px 10px;

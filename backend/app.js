@@ -5,7 +5,8 @@ const userRoute = require('./routes/userRoute');
 const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongo');
-const User = require('./db/models/user.model')
+const User = require('./db/models/user.model');
+const cookieParser = require('cookie-parser');
 
 //dotenv config
 require('dotenv').config();
@@ -46,7 +47,7 @@ app.set('trust proxy', 1);
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         secure: true,
         httpOnly: true,
