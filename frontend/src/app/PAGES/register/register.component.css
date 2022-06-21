@@ -137,7 +137,7 @@ span {
     } */
     .main-box {
         border: none;
-        padding: 15px 10px;
+        /* padding: 15px 10px; */
     }
     /* app-created-by {
         position: absolute;

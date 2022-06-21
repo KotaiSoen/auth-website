@@ -4,7 +4,7 @@ const User = require('../db/models/user.model')
 const userController = require('../controllers/userController');
 const passport = require('passport');
 const cloudinary = require('cloudinary').v2;
-const {CloudinaryStorage} = require('multer-storage-cloudinary');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
 const session = require('express-session');
 const cors = require('cors');
@@ -23,17 +23,21 @@ function isLoggedIn(req, res, next) {
 
 //LOCAL AUTH ROUTES
 router.post("/register", (req, res) => {
-
-    User.register(new User({ email: req.body.email }), req.body.password, (err, user) => {
-        if (err) {
-            console.log(err);
-            res.send(err);
-        }
-        passport.authenticate("local")(req, res, () => {
-            console.log(user)
-            res.send({ 'message': 'You have been locally signed in'})
+    User.findOne({ email: req.body.email })
+        .then((user) => {
+            if (!user) {
+                User.register(new User({ email: req.body.email }), req.body.password, (err, user) => {
+                    if (err) {
+                        console.log(err);
+                        //res.send(err);
+                    }
+                    passport.authenticate("local")(req, res, () => {
+                        console.log(user)
+                        res.send({ 'message': 'You have been locally signed in' })
+                    })
+                })
+            }
         })
-    })
 
 })
 
@@ -64,7 +68,7 @@ router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'
 
 router.get(
     '/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: `${process.env.FRONTEND_PORT}/login`}),
+    passport.authenticate('facebook', { failureRedirect: `${process.env.FRONTEND_PORT}/login` }),
     (req, res) => {
         res.redirect(`${process.env.FRONTEND_PORT}/personal-info`);
     }
@@ -93,12 +97,12 @@ router.get(
 );
 
 //LOGOUT ROUTE
-router.get("/logout", isLoggedIn,  (req, res) => {
+router.get("/logout", isLoggedIn, (req, res) => {
     //handle with passport
-    req.logout(function(err) {
+    req.logout(function (err) {
         if (err) { return next(err); }
-        res.send({ 'message': 'successfully deleted'})
-      });
+        res.send({ 'message': 'successfully deleted' })
+    });
 });
 
 //Main routes
@@ -126,7 +130,7 @@ router.put("/uploadPicture", isLoggedIn, parser.single('file'), (req, res) => {
     User.findOneAndUpdate({ _id: req.user._id }, {
         photoUrl: image_url
     }).then(() => {
-        res.send({ 'message': 'photoUrl send successfully'})
+        res.send({ 'message': 'photoUrl send successfully' })
     })
 })
 
