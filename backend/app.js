@@ -16,6 +16,8 @@ require('./db/mongoose');
 //json parser middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+var distDir = __dirname + "/dist";
+app.use(express.static(distDir));
 
 
 
@@ -39,14 +41,22 @@ app.use(function (req, res, next) {
 
 
 //express session middleware
+app.set('trust proxy', 1);
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: {
+        secure: true,
+        httpOnly: true,
+        sameSite: 'none',
+        maxAge: 60 * 60 * 24 * 1000
+    },
     store: MongoStore.create({
         mongoUrl: process.env.DB_URL,
         ttl: 14 * 24 * 60 * 60,
-        autoRemove: 'native'
+        autoRemove: 'native',
     })
 }));
 
