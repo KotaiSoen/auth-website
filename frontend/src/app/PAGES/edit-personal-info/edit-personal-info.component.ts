@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/auth.service';
 import { WebService } from 'src/app/web.service';
 
@@ -15,16 +16,18 @@ export class EditPersonalInfoComponent implements OnInit {
   passwordChange: string = '';
 
 
-  constructor(private webService: WebService, private router: Router, private authService: AuthService) { }
+  constructor(private webService: WebService, private router: Router, private authService: AuthService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.getPersonalInfo();
   }
 
   getPersonalInfo() {
+    this.spinner.show();
     this.webService.getPersonalInfo().subscribe((res: any) => {
       console.log(res);
       this.users = res;
+      this.spinner.hide();
     })
   }
 

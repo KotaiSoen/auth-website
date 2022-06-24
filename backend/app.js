@@ -33,6 +33,7 @@ app.use(express.static(distDir));
 
 
 app.use(function (req, res, next) {
+    res.header('credentials', 'include');
     res.header('Access-Control-Allow-Credentials', true);
     res.header("Access-Control-Allow-Origin", process.env.FRONTEND_PORT);
     res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE");
