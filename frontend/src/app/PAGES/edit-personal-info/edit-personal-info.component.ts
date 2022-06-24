@@ -19,11 +19,11 @@ export class EditPersonalInfoComponent implements OnInit {
   constructor(private webService: WebService, private router: Router, private authService: AuthService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.getPersonalInfo();
   }
 
   getPersonalInfo() {
-    this.spinner.show();
     this.webService.getPersonalInfo().subscribe((res: any) => {
       console.log(res);
       this.users = res;
@@ -42,6 +42,7 @@ export class EditPersonalInfoComponent implements OnInit {
   }
 
   uploadPicture(event: any) {
+    this.spinner.show();
 
     const file = event.target.files[0];
     
